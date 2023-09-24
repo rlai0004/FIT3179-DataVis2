@@ -6,7 +6,7 @@
     "data": [
         {
             "name": "population",
-            "url": "data/2023_population.csv",
+            "url": "https://raw.githubusercontent.com/rlai0004/FIT3179-DataVis2/main/data/2023_population.csv",
             "format": {
                 "type": "csv",
                 "parse": "auto"
@@ -14,7 +14,7 @@
         },
         {
             "name": "university_rankings",
-            "url": "data/2023_rankings.csv",
+            "url": "https://raw.githubusercontent.com/rlai0004/FIT3179-DataVis2/main/data/2023_rankings.csv",
             "format": {
                 "type": "csv",
                 "parse": "auto"
@@ -39,7 +39,7 @@
         },
         {
             "name": "world_map",
-            "url": "data/ne_110m.json",
+            "url": "https://raw.githubusercontent.com/rlai0004/FIT3179-DataVis2/main/data/ne_110m.json",
             "format": {
                 "type": "topojson",
                 "feature": "ne_110m_admin_0_countries"
@@ -74,9 +74,8 @@
                 },
                 {
                     "type": "formula",
-                    "expr": "datum.students / datum.Population * 1000",
+                    "expr": "(datum.Population == 0 ? 0 : datum.students / datum.Population * 1000)",
                     "as": "ratio"
-                    
                 }
             ]
         },
@@ -105,7 +104,7 @@
             "type": "quantize",
             "domain": {
                 "data": "world_map",
-                "field": "students"
+                "field": "ratio"
             },
             "range": {
                 "scheme": "blues",
@@ -116,7 +115,7 @@
     "legends": [
         {
             "fill": "color",
-            "title": "Number of Students",
+            "title": "# Students / 1000 Population",
             "orient": "bottom-left",
             "offset": 10,
             "encode": {
@@ -158,13 +157,13 @@
             "encode": {
                 "enter": {
                     "tooltip": {
-                        "signal": "{'Number of Students': datum.students, 'Country': datum.properties.NAME}"
+                        "signal": "{'# Students / 1000 Population': datum.ratio, 'Country': datum.properties.NAME}"
                     }
                 },
                 "update": {
                     "fill": {
                         "scale": "color",
-                        "field": "students"
+                        "field": "ratio"
                     },
                     "stroke": {
                         "value": "black"
