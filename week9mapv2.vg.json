@@ -1,0 +1,182 @@
+{
+    "$schema": "https://vega.github.io/schema/vega/v5.json",
+    "width": 900,
+    "height": 500,
+    "autosize": "none",
+    "data": [
+        {
+            "name": "population",
+            "url": "data/2023_population.csv",
+            "format": {
+                "type": "csv",
+                "parse": "auto"
+            }
+        },
+        {
+            "name": "university_rankings",
+            "url": "data/2023_rankings.csv",
+            "format": {
+                "type": "csv",
+                "parse": "auto"
+            },
+            "transform": [
+                {
+                    "type": "aggregate",
+                    "groupby": [
+                        "location"
+                    ],
+                    "fields": [
+                        "stats_number_students"
+                    ],
+                    "ops": [
+                        "sum"
+                    ],
+                    "as": [
+                        "students"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "world_map",
+            "url": "data/ne_110m.json",
+            "format": {
+                "type": "topojson",
+                "feature": "ne_110m_admin_0_countries"
+            },
+            "transform": [
+                {
+                    "type": "lookup",
+                    "from": "university_rankings",
+                    "key": "location",
+                    "fields": [
+                        "properties.NAME"
+                    ],
+                    "values": [
+                        "students"
+                    ],
+                    "as": [
+                        "students"
+                    ],
+                    "default": 0
+                },
+                {
+                    "type": "lookup",
+                    "from": "population",
+                    "key": "Country",
+                    "fields": [
+                        "properties.NAME"
+                    ],
+                    "values": [
+                        "Population"
+                    ],
+                    "default": 0
+                },
+                {
+                    "type": "formula",
+                    "expr": "datum.students / datum.Population * 1000",
+                    "as": "ratio"
+                    
+                }
+            ]
+        },
+        {
+            "name": "graticule",
+            "transform": [
+                {
+                    "type": "graticule",
+                    "step": [
+                        30,
+                        30
+                    ]
+                }
+            ]
+        }
+    ],
+    "projections": [
+        {
+            "name": "projection",
+            "type": "equalEarth"
+        }
+    ],
+    "scales": [
+        {
+            "name": "color",
+            "type": "quantize",
+            "domain": {
+                "data": "world_map",
+                "field": "students"
+            },
+            "range": {
+                "scheme": "blues",
+                "count": 7
+            }
+        }
+    ],
+    "legends": [
+        {
+            "fill": "color",
+            "title": "Number of Students",
+            "orient": "bottom-left",
+            "offset": 10,
+            "encode": {
+                "labels": {
+                    "update": {
+                        "fontSize": {
+                            "value": 12
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "marks": [
+        {
+            "type": "shape",
+            "from": {
+                "data": "graticule"
+            },
+            "transform": [
+                {
+                    "type": "geoshape",
+                    "projection": "projection"
+                }
+            ],
+            "encode": {
+                "update": {
+                    "stroke": {
+                        "value": "grey"
+                    }
+                }
+            }
+        },
+        {
+            "type": "shape",
+            "from": {
+                "data": "world_map"
+            },
+            "encode": {
+                "enter": {
+                    "tooltip": {
+                        "signal": "{'Number of Students': datum.students, 'Country': datum.properties.NAME}"
+                    }
+                },
+                "update": {
+                    "fill": {
+                        "scale": "color",
+                        "field": "students"
+                    },
+                    "stroke": {
+                        "value": "black"
+                    }
+                }
+            },
+            "transform": [
+                {
+                    "type": "geoshape",
+                    "projection": "projection"
+                }
+            ]
+        }
+    ]
+}
