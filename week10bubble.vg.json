@@ -1,7 +1,7 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "title": "Student and Univeristy Numbers by Country",
-    "width": 500,"height": 300,
+    "width": "container",
     "data": {
       "url": "https://raw.githubusercontent.com/rlai0004/FIT3179-DataVis2/main/data/2023_rankings.csv"
     },
@@ -45,12 +45,12 @@
       "x": {
         "field": "universities",
         "type": "quantitative",
-        "title": "Number of Universities"
+        "title": "Universities"
       },
       "y": {
         "field": "students",
         "type": "quantitative",
-        "title": "Number of Students"
+        "title": "Students"
       },
       "color": {
         "field": "region",
@@ -91,13 +91,13 @@
         {
           "field": "universities",
           "type":"quantitative",
-          "title": "Number of Universities",
+          "title": "Universities",
           "format": ","
         },
         {
           "field": "students",
           "type":"quantitative",
-          "title": "Number of Students",
+          "title": "Students",
           "format": ","
         },
         {

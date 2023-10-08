@@ -1,8 +1,6 @@
 {
     "$schema": "https://vega.github.io/schema/vega/v5.json",
-    "width": 900,
-    "height": 500,
-    "autosize": "none",
+    "title": "World Map of University Students per 10,000 Population",
     "data": [
         {
             "name": "population",
@@ -74,7 +72,7 @@
                 },
                 {
                     "type": "formula",
-                    "expr": "(datum.Population == 0 ? 0 : datum.students / datum.Population * 1000)",
+                    "expr": "(datum.Population == 0 ? 0 : datum.students / datum.Population * 10000)",
                     "as": "ratio"
                 }
             ]
@@ -115,8 +113,7 @@
     "legends": [
         {
             "fill": "color",
-            "title": "# Students / 1000 Population",
-            "orient": "bottom-left",
+            "title": "Students / 10,000 Population",
             "offset": 10,
             "encode": {
                 "labels": {
@@ -157,7 +154,7 @@
             "encode": {
                 "enter": {
                     "tooltip": {
-                        "signal": "{'# Students / 1000 Population': datum.ratio, 'Country': datum.properties.NAME}"
+                        "signal": "{'Students / 10,000 Population': format(datum.ratio, '.2f'), 'Country': datum.properties.NAME}"
                     }
                 },
                 "update": {
