@@ -9,7 +9,7 @@ body *{
   body {
     background-color: transparent;
     background-image: url("images/pieces-blue-stationery.jpg");
-    background-size: cover;
+    background-size: 100% 100%;
   }
   
   .page {
