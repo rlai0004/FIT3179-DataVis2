@@ -1,0 +1,105 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "University Ranking Distribution",
+  "description": "A boxplot showing the distribution of university rankings by region.",
+  "width": "container",
+  "data": {
+    "url": "https://raw.githubusercontent.com/rlai0004/FIT3179-DataVis2/main/data/2023_rankings.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "rank_min": "number",
+        "rank_max": "number",
+        "region": "string"
+      }
+    }
+  },
+  "transform": [
+    {
+      "filter": "datum.rank_min <= 1501"
+    },
+    {
+      "calculate": "datum.rank_min < 50 ? 'Top 50' : datum.rank_min < 100 ? 'Top 100' : datum.rank_min < 500 ? 'Top 500' : datum.rank_min < 1000 ? 'Top 1,000' : '> 1,000'",
+      "as": "rank_threshold"
+    },
+    {
+      "calculate": "datum.rank_min < 50 ? 1 : datum.rank_min < 100 ? 2 : datum.rank_min < 500 ? 3 : datum.rank_min < 1000 ? 4 : 5",
+      "as": "rank_threshold_order"
+    },
+    {
+      "aggregate": [
+        {
+          "op": "distinct",
+          "field": "name",
+          "as": "universities"
+        },
+        {
+          "op": "sum",
+          "field": "stats_number_students",
+          "as": "students"
+        }
+      ],
+      "groupby": [
+        "region",
+        "rank_threshold"
+      ]
+    }
+  ],
+  "mark": "bar",
+  "encoding": {
+    "x": {
+      "field": "region",
+      "type": "nominal"
+    },
+    "y": {
+      "field": "universities",
+      "type": "quantitative",
+      "stack": "normalize"
+    },
+    "color": {
+      "field": "rank_threshold",
+      "legend": {
+        "title": "Rank Threshold"
+      },
+      "scale": {
+        "domain": [
+          "Top 50",
+          "Top 100",
+          "Top 500",
+          "Top 1,000",
+          "> 1,000"
+        ],
+        "range": [
+          "#FFD700",
+          "#C0C0C0",
+          "#FFA07A",
+          "#ADD8E6",
+          "#FF6347"
+        ]
+      }
+    },
+    "order": {
+      "field": "rank_threshold_order",
+      "sort": "descending"
+    },
+    "tooltip": [
+      {
+        "field": "rank_threshold",
+        "type": "nominal",
+        "title": "Rank Threshold"
+      },
+      {
+        "field": "universities",
+        "type": "quantitative",
+        "title": "Number of Universities",
+        "format": ",.0f"
+      },
+      {
+        "field": "students",
+        "type": "quantitative",
+        "title": "Number of Students",
+        "format": ",.0f"
+      }
+    ]
+  }
+}

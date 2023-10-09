@@ -1,0 +1,54 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "University Rankings by Region",
+  "description": "A boxplot showing the distribution of university rankings by region.",
+  "width": "container",
+  "data": {
+    "url": "https://raw.githubusercontent.com/rlai0004/FIT3179-DataVis2/main/data/2023_rankings.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "rank_min": "number",
+        "rank_max": "number",
+        "region": "string"
+      }
+    }
+  },
+  "transform": [
+    {
+      "filter": "datum.rank_min <= 1501"
+    }
+  ],
+  "mark": "boxplot",
+  "encoding": {
+    "x": {
+      "field": "region",
+      "type": "nominal"
+    },
+    "color": {
+      "field": "region",
+      "type": "nominal",
+      "scale": {
+          "domain": [
+              "Africa",
+              "Americas",
+              "Asia",
+              "Europe",
+              "Oceania"
+          ],
+          "range": [
+              "#FFA500",
+              "#228B22",
+              "#FF0000",
+              "#0000FF",
+              "#008080"
+          ]
+      }
+    },
+    "y": {
+      "field": "rank_min",
+      "type": "quantitative",
+      "title": "Ranking"
+    }
+  }
+}

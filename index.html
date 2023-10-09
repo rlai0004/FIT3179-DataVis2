@@ -11,33 +11,34 @@
     <script src="vega_lite_vis.js"></script>
     <title>University World Rankings 2023 </title>
 
-  <!-- Import pure.css -->
-  <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css"
-    integrity="sha384-cg6SkqEOCV1NbJoCu11+bm0NvBRc8IYLRGXkmNrqUBfTjmMYwNKPWBTIKyw9mHNJ" crossorigin="anonymous">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Import pure.css -->
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css"
+        integrity="sha384-cg6SkqEOCV1NbJoCu11+bm0NvBRc8IYLRGXkmNrqUBfTjmMYwNKPWBTIKyw9mHNJ" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Google font -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <!-- Google font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
 
-  <!-- CSS file -->
-  <link rel="stylesheet" type="text/css" href="css/styles.css" media="all">
+    <!-- CSS file -->
+    <link rel="stylesheet" type="text/css" href="css/styles.css" media="all">
 </head>
 
 <body>
-    <div class="page">
+    <div class="page" >
         <!-- pure grid group -->
         <div class="pure-g">
             <div class="pure-u-1-1">
                 <h1>University World Rankings 2023</h1>
-                <p>This visualisation presents the World University Rankings and other statistics about global universities and students.<br/>
-                Blah Blah Blah some more text<br/>
-                Blah Blah Blah some more text<br/>
-                Blah Blah Blah some more text<br/>
-                Blah Blah Blah some more text<br/>
-                Blah Blah Blah some more text
-            </p>
+                <p>This visualisation presents the World University Rankings and other statistics about global
+                    universities and students.<br />
+                    Blah Blah Blah some more text<br />
+                    Blah Blah Blah some more text<br />
+                    Blah Blah Blah some more text<br />
+                    Blah Blah Blah some more text<br />
+                    Blah Blah Blah some more text
+                </p>
             </div>
         </div>
         <!-- end pure grid group -->
@@ -48,11 +49,12 @@
             <div class="pure-u-1-3">
                 <div class="description description-left">
                     <h2>Global Student Numbers</h2>
-                    <p>Before getting into the university rankings, we can first observe the global student population and their distribution.<br/>
-                        Blah Blah Blah some more text<br/>
-                        Blah Blah Blah some more text<br/>
-                        Blah Blah Blah some more text<br/>
-                        Blah Blah Blah some more text<br/>
+                    <p>Before getting into the university rankings, we can first observe the global student population
+                        and their distribution.<br />
+                        Blah Blah Blah some more text<br />
+                        Blah Blah Blah some more text<br />
+                        Blah Blah Blah some more text<br />
+                        Blah Blah Blah some more text<br />
                         Blah Blah Blah some more text
                     </p>
                 </div>
@@ -70,25 +72,52 @@
             <div class="pure-u-1-1">
                 <div id="choropleth_map" class="vis-container"></div>
             </div>
+        </div>
         <!-- end pure grid group -->
-        
+
         <!-- pure grid group -->
         <div class="pure-g">
-            <div class="pure-u-1-1">
-                <br/>
-                <br/>
-                <h1>University World Rankings 2023</h1>
-                <p>This visualisation presents the World University Rankings and other statistics about global universities and students.<br/>
-                Blah Blah Blah some more text<br/>
-                Blah Blah Blah some more text<br/>
-                Blah Blah Blah some more text<br/>
-                Blah Blah Blah some more text<br/>
-                Blah Blah Blah some more text
-            </p>
+            <!-- text -->
+            <div class="pure-u-1-3">
+                <div class="description description-left">
+                    <h2>University Ranking distribution</h2>
+                    <p>Now, let's look at the university rankings around the world.<br />
+                        Blah Blah Blah some more text<br />
+                        Blah Blah Blah some more text<br />
+                        Blah Blah Blah some more text<br />
+                        Blah Blah Blah some more text<br />
+                        Blah Blah Blah some more text
+                    </p>
+                </div>
+            </div>
+            <!-- boxplot -->
+            <div class="pure-u-1-3">
+                <div id="boxplot" class="vis-container"></div>
+            </div>
+            <!-- bar chart -->
+            <div class="pure-u-1-3">
+                <div id="stacked_bar_chart" class="vis-container"></div>
             </div>
         </div>
         <!-- end pure grid group -->
-    </div>
+
+        <!-- pure grid group -->
+        <div class="pure-g">
+            <!-- text -->
+            <div class="pure-u-1-3">
+                <div class="description description-left">
+                    <h2>University Rankings</h2>
+                    <p>Now, let's look at the university rankings around the world.<br />
+                        Blah Blah Blah some more text<br />
+                        Blah Blah Blah some more text<br />
+                        Blah Blah Blah some more text<br />
+                        Blah Blah Blah some more text<br />
+                        Blah Blah Blah some more text
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- end pure grid group -->
 </body>
 
 </html>
