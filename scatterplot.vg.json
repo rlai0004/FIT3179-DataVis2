@@ -1,0 +1,99 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": "Student / Staff Ratio vs Ranking",
+    "params": [
+        {
+            "name": "region_selection",
+            "bind": {
+                "input": "select",
+                "options": [
+                    null,
+                    "Africa",
+                    "Americas",
+                    "Asia",
+                    "Europe",
+                    "Oceania"
+                ],
+                "labels": [
+                    "All",
+                    "Africa",
+                    "Americas",
+                    "Asia",
+                    "Europe",
+                    "Oceania"
+                ],
+                "name": "Region: "
+            }
+        }
+    ],
+    "data": {
+        "url": "https://raw.githubusercontent.com/rlai0004/FIT3179-DataVis2/main/data/2023_rankings.csv",
+        "format": {
+            "type": "csv"
+        }
+    },
+    "transform": [
+        {
+            "filter": "region_selection == null || datum.region == region_selection"
+        },
+        {
+            "filter": "datum.rank_order < 1000000"
+        },
+        {
+            "calculate": "datum.rank_order / 10",
+            "as": "rank_order"
+        }
+    ],
+    "mark": {
+        "type": "point"
+    },
+    "encoding": {
+        "x": {
+            "field": "stats_number_students",
+            "type": "quantitative",
+            "axis": {
+                "title": "Student / Staff Ratio"
+            }
+        },
+        "y": {
+            "field": "rank_order",
+            "type": "quantitative",
+            "axis": {
+                "title": "Ranking"
+            }
+        },
+        "opacity": {
+            "value": 0.4
+        },
+        "facet": {
+            "field": "region",
+            "type": "nominal",
+            "header": {
+                "title": "Region"
+            },
+            "columns": 3
+        },
+        "color": {
+          "field": "region",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Africa",
+              "Americas",
+              "Asia",
+              "Europe",
+              "Oceania"
+            ],
+            "range": [
+              "#FFA500",
+              "#228B22",
+              "#FF0000",
+              "#0000FF",
+              "#008080"
+            ]
+          },
+          "title": "Region",
+            "legend": null
+        }
+    }
+}

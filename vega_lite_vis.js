@@ -14,3 +14,11 @@ vegaEmbed("#boxplot", vg_3, {actions: false}).then(function (result) {
 var vg_4 = "stackedbarchart.vg.json";
 vegaEmbed("#stacked_bar_chart", vg_4, {actions: false}).then(function (result) {
 }).catch(console.error);
+
+var vg_5 = "heatmap.vg.json";
+vegaEmbed("#heatmap", vg_5, {actions: false}).then(function (result) {
+}).catch(console.error);
+
+var vg_6 = "scatterplot.vg.json";
+vegaEmbed("#scatterplot", vg_6, {actions: false}).then(function (result) {
+}).catch(console.error);

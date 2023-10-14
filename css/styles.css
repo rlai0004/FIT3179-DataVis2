@@ -1,50 +1,49 @@
-body *{
-    font-family: 'Open Sans', sans-serif;
-  }
-  
-  h1 {
-    font-weight: 900;
-  }
-  
-  body {
-    background-color: transparent;
-    background-image: url("images/pieces-blue-stationery.jpg");
-    background-size: 100% 100%;
-  }
-  
-  .page {
-    width: 1000px;
-    background-color: transparent;
-    margin: auto;
-    padding: 50px;
-    padding-top: 35px;
-  }
-  
-  .vis-container {
-    width: 100%;
-    background-color: white;
-    padding: 20px;
-  }
-  
-  .description h2,
-  h1 {
-    margin-top: 0px;
-  }
-  
-  .description-right {
-    padding-left: 20px;
-  }
-  
-  .description-left {
-    padding-right: 20px;
-  }
-  
-  .pure-g {
-    margin-bottom: 40px;
-    background-color: lightblue;
-    padding: 10px;
-  }
-  
-  .small-font {
-    font-size: 14px;
-  }
+body * {
+  font-family: 'Open Sans', sans-serif;
+}
+
+h1 {
+  font-weight: 900;
+}
+
+body {
+  background-color: transparent;
+  background-image: url("images/pieces-blue-stationery.jpg");
+  background-size: 100% 100%;
+}
+
+.page {
+  width: 1150px;
+  background-color: transparent;
+  margin: auto;
+  padding: 50px;
+  padding-top: 35px;
+}
+
+.vis-container {
+  width: 100%;
+  background-color: white;
+}
+
+.description h2,
+h1 {
+  margin-top: 0px;
+}
+
+.description-right {
+  padding-left: 20px;
+}
+
+.description-left {
+  padding-right: 20px;
+}
+
+.pure-g {
+  margin-bottom: 40px;
+  background-color: lightblue;
+  padding: 10px;
+}
+
+.small-font {
+  font-size: 14px;
+}

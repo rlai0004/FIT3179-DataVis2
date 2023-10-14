@@ -28,6 +28,17 @@
                 ],
                 "name": "Region: "
             }
+        },
+        {
+            "name": "population_above",
+            "value": 0,
+            "bind": {
+                "input": "range",
+                "min": 0,
+                "max": 500000000,
+                "step": 1000000,
+                "name": "Minimum Population: "
+            }
         }
     ],
     "transform": [
@@ -65,12 +76,15 @@
             }
         },
         {
+            "filter": "datum.Population >= population_above"
+        },
+        {
             "calculate": "datum.students / datum.universities",
             "as": "Students per University"
         },
         {
             "calculate": "datum.students / datum.Population * 10000",
-            "as": "Students per 10,000 Population"
+            "as": "Students per 10k Population"
         }
     ],
     "encoding": {
@@ -87,7 +101,16 @@
     },
     "layer": [
         {
-            "mark": "circle",
+            "params": [
+                {
+                  "name": "select",
+                  "select": "point"
+                }
+            ],
+            "mark": {
+                "type": "circle",
+                "cursor": "pointer"
+            },
             "encoding": {
                 "color": {
                     "field": "region",
@@ -143,21 +166,22 @@
                         "title": "Region"
                     },
                     {
-                        "field": "universities",
-                        "type": "quantitative",
-                        "title": "Universities",
-                        "format": ","
-                    },
-                    {
                         "field": "students",
                         "type": "quantitative",
                         "title": "Students",
                         "format": ","
                     },
                     {
+                        "field": "universities",
+                        "type": "quantitative",
+                        "title": "Universities",
+                        "format": ","
+                    },
+                    {
                         "field": "Students per University",
                         "type": "quantitative",
-                        "format": ",.2f"
+                        "format": ",.0f",
+                        "title": "Students / University"
                     },
                     {
                         "field": "Population",
@@ -165,11 +189,19 @@
                         "format": ","
                     },
                     {
-                        "field": "Students per 10,000 Population",
+                        "field": "Students per 10k Population",
                         "type": "quantitative",
-                        "format": ",.2f"
+                        "format": ",.0f",
+                        "title": "Students per 10k Population"
                     }
-                ]
+                ],
+                "fillOpacity": {
+                  "condition": {
+                    "param": "select",
+                    "value": 1
+                  },
+                  "value": 0.3
+                }
             }
         },
         {

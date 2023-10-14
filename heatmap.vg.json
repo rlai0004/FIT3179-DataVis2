@@ -1,0 +1,208 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "params": [
+        {
+            "name": "region_selection",
+            "bind": {
+                "input": "select",
+                "options": [
+                    null,
+                    "Africa",
+                    "Americas",
+                    "Asia",
+                    "Europe",
+                    "Oceania"
+                ],
+                "labels": [
+                    "All",
+                    "Africa",
+                    "Americas",
+                    "Asia",
+                    "Europe",
+                    "Oceania"
+                ],
+                "name": "Region: "
+            }
+        },
+        {
+            "name": "Ranking_Above",
+            "value": 200,
+            "bind": {
+                "input": "range",
+                "min": 50,
+                "max": 1800,
+                "step": 50,
+                "name": "Maximum Ranking: "
+            }
+        }
+    ],
+    "data": {
+        "url": "https://raw.githubusercontent.com/rlai0004/FIT3179-DataVis2/main/data/2023_rankings.csv",
+        "format": {
+            "type": "csv"
+        }
+    },
+    "transform": [
+        {
+            "filter": "region_selection == null || datum.region == region_selection"
+        },
+        {
+            "calculate": "datum.rank_order / 10",
+            "as": "rank_order"
+        },
+        {
+            "filter": "datum.rank_order <= Ranking_Above"
+        }
+    ],
+    "vconcat": [
+        {
+            "layer": [
+                {
+                    "params": [
+                      {
+                        "name": "select",
+                        "select": "point"
+                      }
+                    ],
+                    "mark": {
+                        "type": "bar",
+                        "cursor": "pointer"
+                    },
+                    "title": "University Size Distribution",
+                    "encoding": {
+                        "x": {
+                            "bin": {
+                                "step": 10000
+                            },
+                            "field": "stats_number_students",
+                            "title": "Students"
+                        },
+                        "y": {
+                            "aggregate": "count",
+                            "type": "quantitative",
+                            "title": "Universities"
+                        },
+                        "tooltip": [
+                            {
+                                "aggregate": "count",
+                                "type": "quantitative",
+                                "title": "Universities"
+                            }
+                        ],
+                        "fillOpacity": {
+                          "condition": {
+                            "param": "select",
+                            "value": 1
+                          },
+                          "value": 0.3
+                        }
+                    },
+                    "width": 575
+                },
+                {
+                    "mark": "rule",
+                    "encoding": {
+                        "x": {
+                            "aggregate": "mean",
+                            "field": "stats_number_students",
+                            "type": "quantitative"
+                        },
+                        "color": {
+                            "value": "red"
+                        },
+                        "size": {
+                            "value": 3
+                        },
+                        "tooltip": [
+                            {
+                                "aggregate": "mean",
+                                "field": "stats_number_students",
+                                "type": "quantitative",
+                                "title": "Mean Students",
+                                "format": ",.0f"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "encoding": {
+                "x": {
+                    "field": "rank_order",
+                    "type": "quantitative",
+                    "title": "Ranking",
+                    "bin": {
+                        "minstep": 1
+                    }
+                },
+                "y": {
+                    "field": "stats_number_students",
+                    "type": "quantitative",
+                    "title": "Students",
+                    "bin": {
+                        "step": 10000
+                    }
+                }
+            },
+            "layer": [
+                {
+                    "params": [
+                      {
+                        "name": "select2",
+                        "select": "point"
+                      }
+                    ],
+                    "mark": {
+                        "type": "rect",
+                        "cursor": "pointer"
+                    },
+                    "title": "University Size and Ranking Distribution",
+                    "encoding": {
+                        "color": {
+                            "aggregate": "count",
+                            "type": "quantitative",
+                            "title": "Universities",
+                            "scale": {
+                                "scheme": "yellowgreenblue"
+                            },
+                            "legend": {
+                                "orient": "bottom"
+                            }
+                        },
+                        "fillOpacity": {
+                          "condition": {
+                            "param": "select2",
+                            "value": 1
+                          },
+                          "value": 0.3
+                        },
+                        "tooltip": [
+                            {
+                                "aggregate": "count",
+                                "type": "quantitative",
+                                "title": "Universities"
+                            }
+                        ]
+                    },
+                    "width": 575
+                },
+                {
+                    "mark": "text",
+                    "encoding": {
+                        "text": {
+                            "aggregate": "count",
+                            "type": "quantitative"
+                        },
+                        "opacity": {
+                            "condition": {
+                                "test": "Ranking_Above <= 500"
+                            },
+                            "value": 0
+                        }
+                    }
+                }
+            ]
+        }
+    ]
+}

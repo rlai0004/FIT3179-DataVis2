@@ -21,16 +21,20 @@
                 {
                     "type": "aggregate",
                     "groupby": [
-                        "location"
+                        "location",
+                        "region"
                     ],
                     "fields": [
-                        "stats_number_students"
+                        "stats_number_students",
+                        "name"
                     ],
                     "ops": [
-                        "sum"
+                        "sum",
+                        "distinct"
                     ],
                     "as": [
-                        "students"
+                        "students",
+                        "universities"
                     ]
                 }
             ]
@@ -51,10 +55,9 @@
                         "properties.NAME"
                     ],
                     "values": [
-                        "students"
-                    ],
-                    "as": [
-                        "students"
+                        "students",
+                        "universities",
+                        "region"
                     ],
                     "default": 0
                 },
@@ -73,7 +76,12 @@
                 {
                     "type": "formula",
                     "expr": "(datum.Population == 0 ? 0 : datum.students / datum.Population * 10000)",
-                    "as": "ratio"
+                    "as": "stud_pop_ratio"
+                },
+                {
+                    "type": "formula",
+                    "expr": "(datum.Population == 0 ? 0 : datum.students / datum.universities)",
+                    "as": "stud_uni_ratio"
                 }
             ]
         },
@@ -102,7 +110,7 @@
             "type": "quantize",
             "domain": {
                 "data": "world_map",
-                "field": "ratio"
+                "field": "stud_pop_ratio"
             },
             "range": {
                 "scheme": "yellowgreenblue",
@@ -114,16 +122,7 @@
         {
             "fill": "color",
             "title": "Students / 10,000 Population",
-            "offset": 10,
-            "encode": {
-                "labels": {
-                    "update": {
-                        "fontSize": {
-                            "value": 12
-                        }
-                    }
-                }
-            }
+            "orient": "left"
         }
     ],
     "marks": [
@@ -154,13 +153,13 @@
             "encode": {
                 "enter": {
                     "tooltip": {
-                        "signal": "{'Students / 10,000 Population': format(datum.ratio, '.2f'), 'Country': datum.properties.NAME}"
+                        "signal": "{'Country': datum.properties.NAME, 'Region': datum.region, 'Students': format(datum.students, ',.0f'), 'Universities': format(datum.universities, ',.0f'), 'Students / University': format(datum.stud_uni_ratio, ',.0f'), 'Population': format(datum.Population, ',.0f'), 'Students / 10k Population': format(datum.stud_pop_ratio, ',.0f')}"
                     }
                 },
                 "update": {
                     "fill": {
                         "scale": "color",
-                        "field": "ratio"
+                        "field": "stud_pop_ratio"
                     },
                     "stroke": {
                         "value": "black"
