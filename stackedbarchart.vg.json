@@ -2,6 +2,7 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": "Prop. Distribution of University Rankings",
   "width": "container",
+  "height": 425,
   "params": [
     {
       "name": "select",
@@ -21,18 +22,18 @@
   },
   "transform": [
     {
+      "filter": "datum.rank_order <= 1000000"
+    },
+    {
         "calculate": "datum.rank_order / 10",
         "as": "rank_order"
     },
     {
-      "filter": "datum.rank_order <= 1501"
-    },
-    {
-      "calculate": "datum.rank_order < 50 ? '1-50' : datum.rank_order < 100 ? '51-100' : datum.rank_order < 500 ? '101-500' : datum.rank_order < 1000 ? '501-1,000' : '1,000+'",
+      "calculate": "datum.rank_order <= 100 ? '1-100' : datum.rank_order <= 500 ? '101-500' : datum.rank_order <= 1000 ? '501-1000' : datum.rank_order <= 1500 ? '1001-1,500' : '1,500-1,800'",
       "as": "rank_threshold"
     },
     {
-      "calculate": "datum.rank_order < 50 ? 1 : datum.rank_order < 100 ? 2 : datum.rank_order < 500 ? 3 : datum.rank_order < 1000 ? 4 : 5",
+      "calculate": "datum.rank_order <= 100 ? 1 : datum.rank_order <= 500 ? 2 : datum.rank_order <= 1000 ? 3 : datum.rank_order <= 1500 ? 4 : 5",
       "as": "rank_threshold_order"
     },
     {
@@ -57,7 +58,8 @@
   ],
   "mark": {
     "type": "bar",
-    "cursor": "pointer"
+    "cursor": "pointer",
+    "tooltip": true
   },
   "encoding": {
     "x": {
@@ -69,20 +71,21 @@
       "field": "universities",
       "type": "quantitative",
       "stack": "normalize",
-      "title": "Universities"
+      "title": "Universities",
+      "axis": {
+        "format": ".0%"
+      }
     },
     "color": {
       "field": "rank_threshold",
-      "legend": {
-        "title": "Ranking"
-      },
+      "title": "Ranking",
       "scale": {
         "domain": [
-          "1-50",
-          "51-100",
+          "1-100",
           "101-500",
-          "501-1,000",
-          "1,000+"
+          "501-1000",
+          "1001-1,500",
+          "1,500-1,800"
         ],
         "range": [
           "#FFD700",
@@ -95,27 +98,9 @@
     },
     "order": {
       "field": "rank_threshold_order",
-      "sort": "descending"
+      "sort": "descending",
+      "title": "Ranking tier"
     },
-    "tooltip": [
-      {
-        "field": "rank_threshold",
-        "type": "nominal",
-        "title": "Rank Threshold"
-      },
-      {
-        "field": "universities",
-        "type": "quantitative",
-        "title": "Universities",
-        "format": ",.0f"
-      },
-      {
-        "field": "students",
-        "type": "quantitative",
-        "title": "Students",
-        "format": ",.0f"
-      }
-    ],
     "fillOpacity": {
       "condition": {
         "param": "select",

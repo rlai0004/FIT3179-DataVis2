@@ -56,27 +56,50 @@
         <!-- pure grid group -->
         <div class="pure-g">
             <!-- text -->
-            <div class="pure-u-1-3">
+            <div class="pure-u-1-2">
                 <div class="description description-left">
-                    <h2>Global Student Numbers</h2>
-                    <p>Before getting into the university rankings, let's first observe the global student population
-                        and how they are distributed around the world.
+                    <h2>Exploring Global Student Numbers</h2>
+                    <p>Before delving into the world of university rankings, let's take a closer look at the global
+                        student population and how it is distributed across countries.
                     </p>
-                    <p>Looking at the bubble chart to the right, there is an apparent linear trend between the number
-                        of students and the number of universities in a country - as one would logically expect.
+                    <p>As evident in the accompanying bubble chart, <b>there's a noticeable correlation between the
+                            number of students and universities in a country</b>, as one would logically expect.
                     </p>
-                    
+                    <p><b>Most countries, particularly smaller countries with populations less than 200 million, tend to
+                            have a proportional number of students and universities</b>, with up to 1 million students
+                        and 60 universities.</p>
+                    <p>However, there are some countries that stand out from the rest:</p>
+                    <li><b>The United States of America boasts the highest number of universities (179) and students (4
+                            million)
+                            globally</b>, despite its smaller population compared to countries like China and India.
+                    </li>
+                    <li>The United Kingdom and Japan have a substantial number of universities (over 150) but not as
+                        many students in comparison.</li>
+                    <li>Russia and India also have around 100 universities each but only about 1 million students
+                        enrolled.
+                    </li>
+                    <li>Egypt, on the other hand, has a relatively high number of students (2.6 million) with a
+                        comparatively lower number of universities (40).</li>
+                    <p>The choropleth map below provides another useful view of student distribution around the world,
+                        normalising the number of students in each country by its population.</p>
                 </div>
             </div>
             <!-- bubble chart -->
-            <div class="pure-u-2-3">
+            <div class="pure-u-1-2">
                 <div id="bubble_chart" class="vis-container"></div>
+                <div id="description-right">
+                    <p>From the choropleth map, we can see that <b>the countries with the highest student-to-population
+                            ratios are Greece, Iceland and Australia, each with over 300 students per 10,000 in
+                            population.</b></p>
+                    <p><b>Generally, student enrollment per capita seems highest in western nations located in western
+                            Europe, Oceania and North America </b>. Asian and African nations generally have lower
+                        student-to-population ratios, with some exceptions such as Japan, Turkey and Egypt.</p>
+                </div>
             </div>
-        </div>
-        <!-- end pure grid group -->
-
-        <!-- pure grid group -->
-        <div class="pure-g">
+            <!-- whitespace -->
+            <div class="pure-u-1-1">
+                <p></p>
+            </div>
             <!-- choropleth map -->
             <div class="pure-u-1-1">
                 <div id="choropleth_map" class="vis-container"></div>
@@ -89,14 +112,20 @@
             <!-- text -->
             <div class="pure-u-1-3">
                 <div class="description description-left">
-                    <h2>University Ranking distribution</h2>
-                    <p>Now, let's look at the university rankings around the world.<br />
-                        Blah Blah Blah some more text<br />
-                        Blah Blah Blah some more text<br />
-                        Blah Blah Blah some more text<br />
-                        Blah Blah Blah some more text<br />
-                        Blah Blah Blah some more text
+                    <h2>University Ranking Distribution by Region</h2>
+                    <p>Now, let's examine the global distribution of university rankings. As evident from the two charts
+                        to the right, <b>Oceania stands out with a median rank of 298</b>, and nearly all of its
+                        universities boasting rankings better than the global median. Remarkably, <b>80% of
+                            universities in Oceania are positioned within the top 500 globally.</b></p>
+                    <p>Apart from Oceania, both the Americas and Europe exhibit similar ranking distributions, with a
+                        significant presence of universities at the top echelons of the university ranking leaderboard.
+                        <b>Approximately 35% and 37% of universities in the Americas and Europe, respectively, secure
+                            places within the top 500 globally.</b>
                     </p>
+                    <p>In contrast, Asia and Africa share comparable ranking distributions, with a smaller percentage of
+                        universities ranked in the top 500 globally (approximately 10% and 15%, respectively). Instead,
+                        a more substantial proportion of universities in these regions falls within the range of ranks
+                        1,001 to 1,500.</p>
                 </div>
             </div>
             <!-- boxplot -->
@@ -115,13 +144,21 @@
             <!-- text -->
             <div class="pure-u-1-3">
                 <div class="description description-left">
-                    <h2>University Rankings</h2>
-                    <p>Now, let's look at the university rankings around the world.<br />
-                        Blah Blah Blah some more text<br />
-                        Blah Blah Blah some more text<br />
-                        Blah Blah Blah some more text<br />
-                        Blah Blah Blah some more text<br />
-                        Blah Blah Blah some more text
+                    <h2>University Size Distribution and its Impact on Rankings</h2>
+                    <p>Now, let's explore the distribution of university sizes around the world and understand how it
+                        influences university rankings. Focusing on the top 500 universities globally, we find that the
+                        <b>Fmajority of these institutions have a student population of less than 40,000, with a median
+                            size of just over 22,000 students.</b>
+                    </p>
+                    </p>
+                    <p><b>Surprisingly, there doesn't appear to be a strong relationship between university size and
+                            their global rankings.</b> However, when adjusting the slider on the histogram and heatmap
+                        to view more universities, it becomes evident that <b>very large universities tend not
+                            to perform well in global rankings.</b></p>
+                    <p><b>The distribution hints that maintaining a relatively moderate size, with a range of 10,000 to
+                            40,000 students, is often the optimal choice for most universities.</b> This is further
+                        emphasized
+                        by the fact that <b>36 of the top 50 universities fall within this size range</b>.
                     </p>
                 </div>
             </div>
@@ -131,20 +168,31 @@
             </div>
         </div>
         <!-- end pure grid group -->
-        
+
         <!-- pure grid group -->
         <div class="pure-g">
             <!-- text -->
             <div class="pure-u-1-3">
                 <div class="description description-left">
-                    <h2>University Rankings</h2>
-                    <p>Now, let's look at the university rankings around the world.<br />
-                        Blah Blah Blah some more text<br />
-                        Blah Blah Blah some more text<br />
-                        Blah Blah Blah some more text<br />
-                        Blah Blah Blah some more text<br />
-                        Blah Blah Blah some more text
-                    </p>
+                    <h2>International Students and Their Impact on University Rankings</h2>
+                    <p>Finally, let's delve into the distribution of international students around the world and explore
+                        its connection to university rankings. Examining the scatterplots, <b>we observe a notable
+                            correlation between the percentage of international students and
+                            university rank in most regions</b>. This intriguing relationship opens the door to several
+                        interpretations.</p>
+                    <p>It may suggest that universities with a strong international outreach tend to perform better in
+                        university rankings, emphasizing the importance of global diversity. On the other hand, it might
+                        also indicate that students are naturally drawn to universities that have already established
+                        strong positions in rankings.</p>
+                    <p>This relationship prompts a compelling question: <b>Can universities enhance their rankings by
+                        investing more in international outreach?</b> Further analysis could shed light on this matter.</p>
+                    <p>Of particular interest is the <b>distinct profile of African universities. They stand out by
+                        maintaining a significantly lower proportion of international students</b> compared to universities
+                        in other regions. <b>All African universities in our dataset have less than 20%
+                            international students</b>, setting them apart in this aspect. This is likely due to
+                        external
+                        factors and reasons that students around the world are less interested in studying in Africa -
+                        another area of interest for further exploration.</p>
                 </div>
             </div>
             <!-- heatmap -->

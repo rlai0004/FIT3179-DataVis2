@@ -2,6 +2,7 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": "Regional Variation in University Rankings",
   "width": "container",
+  "height": 425,
   "data": {
     "url": "https://raw.githubusercontent.com/rlai0004/FIT3179-DataVis2/main/data/2023_rankings.csv",
     "format": {
@@ -17,46 +18,73 @@
       "as": "rank_order"
     }
   ],
-  "mark": {
-    "type": "boxplot",
-    "median": {
-      "color": "black"
-    },
-    "ticks": {
-      "color": "black"
-    }
-  },
-  "encoding": {
-    "x": {
-      "field": "region",
-      "type": "nominal",
-      "title": "Region"
-    },
-    "y": {
-      "field": "rank_order",
-      "type": "quantitative",
-      "title": "Ranking"
-    },
-    "color": {
-      "field": "region",
-      "type": "nominal",
-      "scale": {
-        "domain": [
-          "Africa",
-          "Americas",
-          "Asia",
-          "Europe",
-          "Oceania"
-        ],
-        "range": [
-          "#FFA500",
-          "#228B22",
-          "#FF0000",
-          "#0000FF",
-          "#008080"
-        ]
+  "layer": [
+    {
+      "mark": {
+        "type": "boxplot",
+        "median": {
+          "color": "black"
+        },
+        "ticks": {
+          "color": "black"
+        }
       },
-      "title": "Region"
+      "encoding": {
+        "x": {
+          "field": "region",
+          "type": "nominal",
+          "title": "Region"
+        },
+        "y": {
+          "field": "rank_order",
+          "type": "quantitative",
+          "title": "Ranking"
+        },
+        "color": {
+          "field": "region",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Africa",
+              "Americas",
+              "Asia",
+              "Europe",
+              "Oceania"
+            ],
+            "range": [
+              "#FFA500",
+              "#228B22",
+              "#FF0000",
+              "#0000FF",
+              "#008080"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "mark": "rule",
+      "encoding": {
+        "y": {
+          "aggregate": "median",
+          "field": "rank_order",
+          "type": "quantitative"
+        },
+        "color": {
+          "value": "grey"
+        },
+        "size": {
+          "value": 2
+        },
+        "tooltip": [
+          {
+            "aggregate": "median",
+            "field": "rank_order",
+            "type": "quantitative",
+            "title": "Global Median Ranking"
+          }
+        ]
+      }
     }
-  }
+  ]
 }

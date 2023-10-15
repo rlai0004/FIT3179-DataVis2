@@ -26,7 +26,7 @@
         },
         {
             "name": "Ranking_Above",
-            "value": 200,
+            "value": 500,
             "bind": {
                 "input": "range",
                 "min": 50,
@@ -66,7 +66,8 @@
                     ],
                     "mark": {
                         "type": "bar",
-                        "cursor": "pointer"
+                        "cursor": "pointer",
+                        "tooltip": true
                     },
                     "title": "University Size Distribution",
                     "encoding": {
@@ -82,13 +83,6 @@
                             "type": "quantitative",
                             "title": "Universities"
                         },
-                        "tooltip": [
-                            {
-                                "aggregate": "count",
-                                "type": "quantitative",
-                                "title": "Universities"
-                            }
-                        ],
                         "fillOpacity": {
                           "condition": {
                             "param": "select",
@@ -97,7 +91,7 @@
                           "value": 0.3
                         }
                     },
-                    "width": 575
+                    "width": 675
                 },
                 {
                     "mark": "rule",
@@ -155,7 +149,8 @@
                     ],
                     "mark": {
                         "type": "rect",
-                        "cursor": "pointer"
+                        "cursor": "pointer",
+                        "tooltip": true
                     },
                     "title": "University Size and Ranking Distribution",
                     "encoding": {
@@ -176,16 +171,9 @@
                             "value": 1
                           },
                           "value": 0.3
-                        },
-                        "tooltip": [
-                            {
-                                "aggregate": "count",
-                                "type": "quantitative",
-                                "title": "Universities"
-                            }
-                        ]
+                        }
                     },
-                    "width": 575
+                    "width": 675
                 },
                 {
                     "mark": "text",
@@ -196,7 +184,8 @@
                         },
                         "opacity": {
                             "condition": {
-                                "test": "Ranking_Above <= 500"
+                                "test": "Ranking_Above <= 500",
+                                "value": 1
                             },
                             "value": 0
                         }

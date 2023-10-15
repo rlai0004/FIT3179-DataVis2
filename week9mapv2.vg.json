@@ -80,7 +80,7 @@
                 },
                 {
                     "type": "formula",
-                    "expr": "(datum.Population == 0 ? 0 : datum.students / datum.universities)",
+                    "expr": "(datum.universities == 0 ? 0 : datum.students / datum.universities)",
                     "as": "stud_uni_ratio"
                 }
             ]
@@ -107,14 +107,13 @@
     "scales": [
         {
             "name": "color",
-            "type": "quantize",
+            "type": "sequential",
             "domain": {
                 "data": "world_map",
                 "field": "stud_pop_ratio"
             },
             "range": {
-                "scheme": "yellowgreenblue",
-                "count": 7
+                "scheme": "yellowgreenblue"
             }
         }
     ],
